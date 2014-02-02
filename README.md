@@ -6,6 +6,8 @@ This is a collection of core extensions.
 
 Tested with:
 
+* Ruby: MRI 1.9.3
+* Ruby: MRI 2.0.0
 * Ruby: MRI 2.1.0 +
 
 ## Installation
@@ -22,12 +24,29 @@ And then execute:
 bundle
 ```
 
+## Configuration
+
+Create an initializer to set custom configuration options, if needed.
+
+```ruby
+# config/initializers/conversions.rb
+
+Conversions.configure do |config|
+  config.extensions = ["Exception"]
+end
+```
+
+Currently the only configuration option is `extensions`, which is an Array of Core Object names to be extended during gem initialization (by default this is set to `["Exception"]`). The Available Core Extensions section below lists the available Core Extensions.
+
 ## Usage
 
-The available core extensions have all been patched in, so are available on all
-instances of the associated objects.
+Core Extensions added via the `config` block will all been patched in, so are available on all instances of the associated objects.
 
 ## Available Core Extensions
+
+### Exception
+
+Includes:
 
 * Exception#inspect_backtrace(backtrace_cleaner = Rails::backtrace_cleaner)
 

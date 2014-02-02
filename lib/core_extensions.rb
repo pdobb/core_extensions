@@ -1,4 +1,5 @@
-require "core_extensions/exception"
+require_relative "core_extensions/configuration"
 
-module CoreExtensions
+CoreExtensions.configuration.extensions.each do |method_name|
+  require_relative "core_extensions/#{method_name.downcase}"
 end
