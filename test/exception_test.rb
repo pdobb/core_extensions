@@ -1,6 +1,18 @@
 require 'test_helper'
 
 describe Exception do
+  describe "#details" do
+    it "outputs class and message" do
+      begin
+        asdf
+      rescue => ex
+        result = ex.details
+      end
+
+      assert { result.starts_with? "NameError (undefined local variable or method `asdf'" }
+    end
+  end
+
   describe "#inspect_backtrace" do
     it "outputs class, message, and application-specific backtrace" do
       begin

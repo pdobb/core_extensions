@@ -8,7 +8,7 @@ Tested with:
 
 * Ruby: MRI 1.9.3
 * Ruby: MRI 2.0.0
-* Ruby: MRI 2.1.0 +
+* Ruby: MRI 2.1.2
 
 ## Installation
 
@@ -47,6 +47,10 @@ Core Extensions added via the `config` block will all been patched in, so are av
 ### Exception
 
 Includes:
+
+* Exception#details
+
+Prints the exception class and message.
 
 * Exception#inspect_backtrace(backtrace_cleaner = Rails::backtrace_cleaner)
 

@@ -11,11 +11,10 @@ Gem::Specification.new do |s|
   s.email       = ["pdobbins@gmail.com"]
   s.homepage    = "https://github.com/pdobb/core_extensions"
   s.summary     = "A collection of Ruby/Rails Core Extensions."
+  s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
-
-  s.add_dependency "rails", ">= 3"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "minitest-rails"
