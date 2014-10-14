@@ -9,7 +9,7 @@ module CoreExtensions
   end
 
   class Configuration
-    # Which conversion method to require on gem initialization
+    # Which extensions to require on gem initialization
     attr_reader :extensions
 
     def initialize

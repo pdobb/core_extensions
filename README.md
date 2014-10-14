@@ -2,6 +2,7 @@
 
 This is a collection of core extensions.
 
+
 ## Compatibility
 
 Tested with:
@@ -9,6 +10,7 @@ Tested with:
 * Ruby: MRI 1.9.3
 * Ruby: MRI 2.0.0
 * Ruby: MRI 2.1.2
+
 
 ## Installation
 
@@ -24,6 +26,7 @@ And then execute:
 bundle
 ```
 
+
 ## Configuration
 
 Create an initializer to set custom configuration options, if needed.
@@ -37,6 +40,7 @@ end
 ```
 
 Currently the only configuration option is `extensions`, which is an Array of Core Object names to be extended during gem initialization (by default this is set to `["Exception"]`). The Available Core Extensions section below lists the available Core Extensions.
+
 
 ## Usage
 
@@ -74,6 +78,7 @@ rescue => ex
   logger.error ex.inspect_backtrace(nil) # Prints error info and full backtrace
 end
 ```
+
 
 ## Author
 

@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_development_dependency "sqlite3"
+  s.add_development_dependency "rails"
   s.add_development_dependency "minitest-rails"
-  s.add_development_dependency "minitest-ansi"
-  s.add_development_dependency "wrong"
 end

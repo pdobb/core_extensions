@@ -9,7 +9,7 @@ describe Exception do
         result = ex.details
       end
 
-      assert { result.starts_with? "NameError (undefined local variable or method `asdf'" }
+      assert result.starts_with?("NameError (undefined local variable or method `asdf'")
     end
   end
 
@@ -21,19 +21,19 @@ describe Exception do
         result = ex.inspect_backtrace
       end
 
-      assert { result.starts_with?("NameError (undefined local variable or method `asdf'") }
-      assert { result =~ %r{core_extensions/test/exception_test.rb:\d+:in} }
+      assert result.starts_with?("NameError (undefined local variable or method `asdf'")
+      assert result =~ %r{core_extensions/test/exception_test.rb:\d+:in}
     end
 
-    it "outputs class, message, and full backtrace given nil backtrace_cleaner" do
+    it "outputs class, message, and full backtrace, GIVEN a nil backtrace_cleaner" do
       begin
         asdf
       rescue => ex
         result = ex.inspect_backtrace(nil)
       end
 
-      assert { result.starts_with?("NameError (undefined local variable or method `asdf'") }
-      assert { result =~ %r{core_extensions/test/exception_test.rb:\d+:in} }
+      assert result.starts_with?("NameError (undefined local variable or method `asdf'")
+      assert result =~ %r{core_extensions/test/exception_test.rb:\d+:in}
     end
   end
 end
