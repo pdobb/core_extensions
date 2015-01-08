@@ -35,11 +35,11 @@ Create an initializer to set custom configuration options, if needed.
 # config/initializers/conversions.rb
 
 Conversions.configure do |config|
-  config.extensions = ["Exception"]
+  config.extensions = ["Exception", "Range"]
 end
 ```
 
-Currently the only configuration option is `extensions`, which is an Array of Core Object names to be extended during gem initialization (by default this is set to `["Exception"]`). The Available Core Extensions section below lists the available Core Extensions.
+Currently the only configuration option is `extensions`, which is an Array of Core Object names to be extended during gem initialization (by default this is set to `["Exception", "Range"]`). The Available Core Extensions section below lists the available Core Extensions.
 
 
 ## Usage
@@ -77,6 +77,21 @@ begin
 rescue => ex
   logger.error ex.inspect_backtrace(nil) # Prints error info and full backtrace
 end
+```
+
+
+### Range
+
+Includes:
+
+* Range#time_step
+
+An iterator for stepping through a time range by a unit of time.
+
+
+```ruby
+(1.hour.ago..Time.current).time_step(15.minutes).map { |time| time.to_s(:short) }
+=> ["08 Jan 08:10", "08 Jan 08:25", "08 Jan 08:40", "08 Jan 08:55", "08 Jan 09:10"]
 ```
 
 
