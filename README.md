@@ -1,6 +1,6 @@
 # Core Extensions
 
-This is a collection of core extensions.
+This is a collection of core extensions to Ruby and Rails components.
 
 
 ## Compatibility
@@ -94,6 +94,53 @@ An iterator for stepping through a time range by a unit of time.
 => ["08 Jan 08:10", "08 Jan 08:25", "08 Jan 08:40", "08 Jan 08:55", "08 Jan 09:10"]
 ```
 
+
+### PrefixesHelper
+
+Adds helper methods for adding ActionView::LookupContext prefixes on including controllers.
+
+Includes:
+
+* #prepend_lookup_context_prefixes(prefix)
+
+Prepends the passed in prefix to the current `lookup_context.prefixes` list if not already present in the first position.
+
+*Note*: Modification of the lookup_context prefixes is cached, so it is important to use `around_action` calls when using these methods. When passing the `&block` in to the provided methods, they will then take care of removing the prefixes after the action is yielded.
+
+```ruby
+class MyObjectsController < ApplicationController
+  include PrefixesHelper
+
+  around_action only: :show do |_, block|
+    prepend_lookup_context_prefixes("my_optional_name_space/my_objects", &block)
+  end
+
+  def show
+    # Will now look for the "show" template and relatively-pathed partials at
+    # "my_optional_namespace/my_other_objects/" first, then
+    # "my_objects_controller/" second, and so on for the usual template
+    # inheritance lookup path.
+  end
+end
+```
+
+* #append_penultimate_lookup_context_prefixes(prefix)
+
+Sets the penultimate (2nd-to-last) prefix in the current `lookup_context.prefixes` list if not already present in the penultimate position.
+
+```ruby
+class MyObjectsController < ActionController::Base
+  include PrefixesHelper
+
+  around_action only: %i[index edit update] do |_, block|
+    append_penultimate_lookup_context_prefixes("my_optional_name_space/my_objects", &block)
+    # Will now look for templates and relatively-pathed partials in
+    # "my_objects_controller/" first, and so on for the usual template, except
+    # that "my_optional_namespace/my_other_objects/" will be searched
+    # second-to-last -- just before "application/".
+  end
+end
+```
 
 ## Author
 
