@@ -13,7 +13,7 @@ module CoreExtensions
     attr_reader :extensions
 
     def initialize
-      @extensions = %w[Exception Range]
+      @extensions = %w[Exception Range Hash]
     end
 
     def extensions=(val)
