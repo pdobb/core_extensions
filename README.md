@@ -32,9 +32,9 @@ bundle
 Create an initializer to set custom configuration options, if needed.
 
 ```ruby
-# config/initializers/conversions.rb
+# config/initializers/core_extensions.rb
 
-Conversions.configure do |config|
+CoreExtensions.configure do |config|
   config.extensions = ["Exception", "Range", "Hash"]
 end
 ```
