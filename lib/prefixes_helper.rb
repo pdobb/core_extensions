@@ -19,7 +19,7 @@ module PrefixesHelper
   def prepend_lookup_context_prefixes(*prefixes, &block)
     lookup_context.prefixes.prepend(*prefixes)
     block.call
-    remove_lookup_context_prefixes(*prefixes, index: 0)
+    remove_lookup_context_prefixes(0, *prefixes)
   end
 
   # Sets the penultimate (2nd-to-last) prefixes in the current
@@ -29,7 +29,7 @@ module PrefixesHelper
   def append_penultimate_lookup_context_prefixes(*prefixes, &block)
     lookup_context.prefixes.insert(-2, *prefixes)
     block.call
-    remove_lookup_context_prefixes(*prefixes.reverse, index: -2)
+    remove_lookup_context_prefixes(-2, *prefixes.reverse)
   end
 
   # Removes the passed in prefixes from the current `lookup_context.prefixes`
@@ -38,7 +38,7 @@ module PrefixesHelper
   #
   # @param [Array<String>] prefixes
   # @param [Integer] index
-  def remove_lookup_context_prefixes(*prefixes, index: nil)
+  def remove_lookup_context_prefixes(index = nil, *prefixes)
     prefixes.each do |prefix|
       if index
         if lookup_context.prefixes[index] == prefix
