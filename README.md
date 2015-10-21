@@ -115,6 +115,33 @@ hash[:b]  # => 2
 hash[:c]  # => nil
 ```
 
+* Hash#deep_merge_combining_css_classes  (Requires Rails 4+)
+
+Deep merge two hashes while combining the strings found in the :class keys.
+
+```ruby
+h1 = { a: 1, input_html: { class: "c1", b: 1 } }
+h2 = { a: 2, input_html: { class: "c2", c: 2 } }
+
+h1.deep_merge_combining_css_classes(h2)
+# => { a: 2, input_html: { class: "c1 c2", b: 1, c: 2 } }
+
+h1  # => { a: 1, input_html: { class: "c1", b: 1 } }
+```
+
+* Hash#deep_merge_combining_css_classes!  (Requires Rails 4+)
+
+Deep merge two hashes while combining the strings found in the :class keys.
+This version modifies the original hash.
+
+```ruby
+h1 = { a: 1, input_html: { class: "c1", b: 1 } }
+h2 = { a: 2, input_html: { class: "c2", c: 2 } }
+
+h1.deep_merge_combining_css_classes!(h2)
+h1  # => { a: 2, input_html: { class: "c1 c2", b: 1, c: 2 } }
+```
+
 
 ### PrefixesHelper
 
